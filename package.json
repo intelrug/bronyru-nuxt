@@ -1,0 +1,49 @@
+{
+  "name": "bronyru",
+  "description": "МагияДружбы - Творческое объединение",
+  "version": "2.11.0",
+  "private": true,
+  "dependencies": {
+    "@nuxt/typescript-runtime": "0.3.8",
+    "@nuxtjs/axios": "5.9.4",
+    "@nuxtjs/router": "^1.5.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "cross-env": "^7.0.0",
+    "js-cookie": "^2.2.1",
+    "nuxt": "2.11.0",
+    "nuxt-property-decorator": "2.5.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.5",
+    "vue2-touch-events": "^2.1.0",
+    "vuex": "^3.1.2",
+    "vuex-class": "0.3.2",
+    "vuex-class-component": "^2.2.1"
+  },
+  "scripts": {
+    "dev": "cross-env HOST=0.0.0.0 nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "cross-env HOST=0.0.0.0 nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "lint": "eslint --ext .js,.ts,.vue ./",
+    "deploy": "yarn run build && node tasks/deploy.js"
+  },
+  "devDependencies": {
+    "@intelrug/stylint-loader": "^1.0.2",
+    "@nuxt/typescript-build": "0.5.6",
+    "@types/js-cookie": "^2.2.4",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-typescript": "^6.3.1",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "fs-extra": "^8.1.0",
+    "gh-pages": "^2.2.0",
+    "stylint": "^2.0.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "typescript": "^3.7.5"
+  }
+}
