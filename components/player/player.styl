@@ -1,0 +1,237 @@
+.player
+	position relative
+	display block
+	user-select none
+
+
+
+	&__video
+		display flex
+		width 100%
+		max-width 100%
+		max-height 100%
+
+
+
+	&__audio
+		display none
+
+
+
+	&__spinner
+		position absolute
+		top 0
+		right 0
+		left 0
+		bottom 0
+		display flex
+		align-items center
+		justify-content center
+		background-color #000000
+
+
+
+	&__controls
+		position absolute
+		top 0
+		right 0
+		left 0
+		bottom 0
+
+
+
+	&__play-button
+		position absolute
+		top 0
+		right 0
+		left 0
+		bottom 0
+		display flex
+		align-items center
+		justify-content center
+
+		& > svg
+			width 80px
+			height 80px
+			fill #ffffff
+
+
+
+	&__start-from
+		position absolute
+		top 50%
+		left 16px
+		margin-top -18px
+		padding 4px 16px
+		color #f0f0f0
+		font-size 16px
+		font-weight 700
+		cursor pointer
+		background-color rgba(32, 32, 32, .8)
+		border-radius 2px
+
+		&:hover
+			background-color #303030
+
+
+	&__gradient-bottom
+		position absolute
+		right 0
+		left 0
+		bottom 0
+		height 60px
+		background linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5))
+
+
+
+	&__gradient-top
+		position absolute
+		top 0
+		right 0
+		left 0
+		height 60px
+		background linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5))
+
+
+
+	&__controls-bottom
+		position absolute
+		right 12px
+		left 12px
+		bottom 6px
+		display flex
+		align-items center
+		flex-wrap wrap
+		flex-direction row
+		height 50px
+		justify-content space-evenly
+
+
+
+	&__controls-top
+		position absolute
+		top 8px
+		right 10px
+		left 10px
+		display flex
+		flex-direction raw
+		height 28px
+
+		& ^[0]__icon
+			width 28px
+			height 28px
+
+
+
+	&__seek-bar
+		width 100%
+
+
+
+	&__icon
+		width 34px
+		height 34px
+		cursor pointer
+
+		&_size_s
+			width 24px
+			height 24px
+			margin-x 4px
+
+		& > svg
+			fill #ffffff
+			opacity .8
+
+		&:hover > svg
+			opacity 1
+
+
+
+	&__volume
+		display flex
+		overflow hidden
+		align-items center
+		width 32px
+		margin-left 10px
+		transition width .1s ease-out
+
+		& ^[0]__icon
+			flex-shrink 0
+			width 32px
+			height 32px
+
+		&:hover
+			width 120px
+
+
+
+	&__volume-seek-bar
+		flex-shrink 0
+		width 80px
+		padding 0 4px
+
+
+
+	&__spacer
+		flex-grow 1
+
+
+
+	&__duration
+		margin-left 10px
+		color #ffffff
+		font-size 15px
+		font-weight 500
+		line-height 14px
+
+
+
+	&__popup
+		position absolute
+		right 10px
+		bottom 60px
+		padding-y 8px
+		background rgba(28, 28, 28, .9)
+		border-radius 2px
+
+
+
+	&__popup-item
+		position relative
+		padding 4px 16px 4px 36px
+		color #e0e0e0
+		font-weight 500
+		cursor pointer
+
+		&:hover
+			background rgba(255, 255, 255, .1)
+
+
+
+
+	&__popup-icon
+		position absolute
+		left 10px
+		width 18px
+		height 24px
+		fill #ffffff
+
+
+
+	&_nocursor
+		cursor none
+
+
+
+.controls-enter-active
+	transition opacity .2s ease-in
+
+.controls-enter
+	opacity 0
+
+.controls-leave-to
+	opacity 0
+
+.controls-leave-active
+	transition opacity .2s ease-out
+

@@ -1,0 +1,155 @@
+grid(containerMaxWidth = 1200px, grGutterWidth = 20px, colls = 12, breakpoints)
+
+	.grid-{colls}
+		min-width 320px
+
+
+		&__container
+			width 100%
+			max-width containerMaxWidth
+			margin-right auto
+			margin-left auto
+			padding-right grGutterWidth
+			padding-left grGutterWidth
+
+			// Modifiers
+
+			&_width
+
+				&_full
+					width 100%
+					max-width 100%
+
+			&_fixed
+				width containerMaxWidth
+				max-width none
+
+
+
+		&__row
+			margin-right -(grGutterWidth)
+			margin-left -(grGutterWidth)
+
+			for name, breakpoint in breakpoints
+				+above(breakpoint)
+					&-{name}
+						margin-right -(grGutterWidth)
+						margin-left -(grGutterWidth)
+						clearfix()
+
+
+
+		&__row
+			clearfix()
+
+
+
+		&__row
+			for name, breakpoint in breakpoints
+				+below(breakpoint)
+					&-b-{name}
+						margin-right -(grGutterWidth)
+						margin-left -(grGutterWidth)
+						clearfix()
+
+
+
+		&__holder
+			clearfix()
+
+
+
+		&__col
+			width 100%
+			min-height 1px
+			padding-right (grGutterWidth)
+			padding-left (grGutterWidth)
+
+
+			&_size
+				for num in (1..colls)
+					&_{num}
+						float left
+						width ((100 / colls) * num) %
+						padding-right (grGutterWidth)
+						padding-left (grGutterWidth)
+
+			// Порядок влево
+
+			&_pull
+				for num in (0..colls)
+					&_{num}
+
+						if num
+							position relative
+							right (100 / colls * num) %
+						else
+							position relative
+							right auto
+
+			// Порядок вправо
+
+			&_push
+				for num in (0..colls)
+					&_{num}
+
+						if num
+							position relative
+							left (100 / colls * num) %
+						else
+							position relative
+							left auto
+
+			// Смещение
+
+			&_offset
+				for num in (0..colls)
+					&_{num}
+						position relative
+						margin-left (100 / colls * num) %
+
+
+
+			for name, breakpoint in breakpoints
+				&_size
+					&_{name}
+						+above(breakpoint)
+							for num in (0..colls)
+								&-{num}
+									float left
+									width ((100 / colls) * num) %
+
+				// Порядок влево
+				&_pull
+					&_{name}
+						+above(breakpoint)
+							for num in (0..colls)
+								&-{num}
+									if num
+										position relative
+										right (100 / colls * num) %
+									else
+										position relative
+										right auto
+
+				// Порядок вправо
+				&_push
+					&_{name}
+						+above(breakpoint)
+							for num in (0..colls)
+								&-{num}
+									if num
+										position relative
+										left (100 / colls * num) %
+									else
+										position relative
+										left auto
+
+				// Смещение
+				&_offset
+					&_{name}
+						+above(breakpoint)
+							for num in (0..colls)
+								&-{num}
+									position relative
+									margin-left (100 / colls * num) %

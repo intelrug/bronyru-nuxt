@@ -1,0 +1,134 @@
+.mobile-header
+	position fixed
+	top 0
+	left 0
+	z-index 10
+	width 100%
+	background $a-color
+	box-shadow 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24)
+
+
+
+	&__dimmer
+		position fixed
+		top 50px
+		width 100%
+		height calc(100vh - 50px)
+		background rgba(0, 0, 0, .5)
+
+
+
+	&__nav-background
+		position fixed
+		top 50px
+		overflow-y auto
+		width 100%
+		max-height calc(100% - 50px)
+		background #404040
+
+
+
+	&__mobile-nav
+		position fixed
+		top 50px
+		right 0
+		left 0
+		display none
+
+		&_opened
+			display block
+
+
+
+	&__inner
+		display flex
+		align-items center
+		height 50px
+		padding 8px 0
+
+
+	&__backward
+		width 60px
+		height 100%
+		padding 4px 0
+		cursor pointer
+
+
+
+	&__menu-icon
+		display block
+		width 24px
+		min-width 24px
+		height 24px
+		margin-x 10px
+		cursor pointer
+		fill #FFFFFF
+
+
+
+	&__backward-icon
+		fill #ffffff
+
+
+
+	&__logo
+		width 28px
+		min-width 28px
+		height 100%
+		text-align center
+
+
+
+	&__logo-icon
+		fill #ffffff
+
+
+
+	&__title
+		overflow hidden
+		min-width 0
+		margin-left 6px
+		color #ffffff
+		font-size 18px
+		font-weight 300
+		line-height 51px
+		white-space nowrap
+		text-overflow ellipsis
+
+
+
+	&__right
+		display flex
+		align-items center
+		height 100%
+		margin-left auto
+
+
+
+	&__nav
+		display none
+		padding 0 25px
+
+		+above(size-m)
+			display block
+
+
+
+	&__social-group
+		display none
+
+		+above(size-m)
+			display flex
+
+
+
+	&__social-link
+		display block
+		width 30px
+		height 30px
+		margin-right 14px
+
+
+
+	&__social-icon
+		fill #ffffff

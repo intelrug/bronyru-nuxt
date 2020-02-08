@@ -1,0 +1,162 @@
+* // @stylint ignore
+	box-sizing border-box
+	margin 0
+	padding 0
+
+
+
+svg
+	max-width 100%
+	max-height 100%
+
+
+
+hr
+	height 0
+	color #50c
+	border-bottom none
+
+
+
+.vk-comments
+	max-width 100%
+
+	& iframe
+		width 100%
+
+
+
+
+.page
+	position relative
+	display block
+	height 100%
+
+
+
+	&__body
+		min-height 100%
+		padding 25px 0 10px
+		color #343434
+		font-family 'Roboto', sans-serif, Arial, sans-serif
+		font-variant no-common-ligatures
+		font-size 16px
+		font-weight 300
+		line-height 1.8
+
+		+below(size-l)
+			padding 50px 0 10px
+			background-color #fff
+			background-image none
+
+		// Модификаторы
+
+		&_nav
+			&_open
+				overflow hidden
+				max-height 100%
+
+				+above(size-l)
+					overflow visible
+					max-height none
+
+
+
+	&__wrapper
+		display flex
+		flex-direction column
+		max-width 900px
+		min-height 100%
+		margin 0 auto
+		background #eeeeff
+		border 1px solid #5500cc
+
+		+below(size-l)
+			max-width 1000px
+			background transparent
+			border none
+
+
+
+	&__nav
+		margin-top 5px
+
+		+below(size-l)
+			display none
+
+
+
+	&__header
+		width 100%
+		background #fafafa
+		border-bottom 1px solid #e6e6e6
+
+		+below(size-l)
+			display none
+
+
+
+	&__mobile-header
+		display none
+
+		+below(size-l)
+			display block
+
+
+
+	&__burger
+		display inline-block
+		vertical-align middle
+		font-size 0
+
+		+above(size-l)
+			display none
+
+
+
+	&__slide-nav
+		position fixed
+		top 0
+		left 0
+		z-index 400
+		transform translate(-200%, 0)
+		overflow auto
+		width 100%
+		height 100%
+		padding 0 0 0 60px
+		color #fff
+		text-align right
+		background #3a3a3a
+		box-shadow 0 2px 4px 0 rgba(0 0 0 .5)
+		transition transform .3s ease-in
+
+		+above(size-l)
+			display none
+			overflow visible
+
+		// Modifiers
+
+		&_state
+			&_open
+				transform translate(-60px, 0)
+
+
+
+	&__content
+		flex 1 0 auto
+
+
+
+	&__title
+		margin 0 0 30px
+
+
+
+	&__footer
+		flex 0 0 auto
+
+
+
+	&__background
+		+below(size-l)
+			display none

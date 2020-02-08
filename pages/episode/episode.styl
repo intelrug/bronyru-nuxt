@@ -1,0 +1,106 @@
+.episode
+	display block
+	padding 10px
+	font-size 14px
+
+
+
+	&__title
+		position relative
+		z-index 1
+		padding-top 30px
+		color #6600cc
+		font-family woodrow
+		font-size 2.1em
+		line-height 2
+		text-align center
+
+		+below(size-l)
+			padding 0 0 10px
+
+		+below(size-s)
+			line-height 1.4
+
+
+
+	&__publishers-tip
+		margin 10px 0 20px
+		padding 0 10px 5px
+		font-size 13px
+		background #ccddff
+
+		+below(size-l)
+			display none
+
+		& > span
+			font-weight bold
+
+
+
+	&__info
+		display flex
+		margin-top 20px
+
+		+below(size-s)
+			flex-direction column-reverse
+
+
+
+	&__info-right
+		flex-basis 0
+		flex-grow 2
+
+		+below(size-s)
+			margin-bottom 24px
+
+
+
+	&__info-left
+		padding-right 10px
+		flex-basis 0
+		flex-grow 1
+
+		& > div > div
+			position relative
+			margin 0 0 8px 30px
+			white-space nowrap
+
+			&::before
+				content ''
+				position absolute
+				left -30px
+				display block
+				width 25px
+				height 25px
+
+
+
+	&__info-date::before
+		background url('/img/episode/date.png') no-repeat 0 0 / cover
+
+
+
+	&__info-writer::before
+		background url('/img/episode/writers.png') no-repeat 0 0 / cover
+
+
+
+	&__info-song::before
+		background url('/img/episode/songs.png') no-repeat 0 0 / cover
+
+
+
+	&__info-description
+		padding-right 40px
+		line-height 1.4
+		text-align justify
+
+		+below(size-m)
+			padding-right 0
+
+
+	&__info-title
+		margin-bottom 8px
+		font-size 14px
+		font-weight 700
+		text-decoration underline

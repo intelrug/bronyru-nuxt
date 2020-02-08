@@ -1,0 +1,84 @@
+.seek-bar
+	display block
+	height 16px
+	cursor pointer
+
+
+
+	&__box
+		position relative
+		top 6px
+		height 3px
+		background rgba(255, 255, 255, .2)
+		transition all .1s ease-out
+
+
+
+	&__preload
+		position absolute
+		top 0
+		left 0
+		height 100%
+		background rgba(255, 255, 255, .4)
+
+
+
+	&__bg
+		position absolute
+		top 0
+		left 0
+		height 100%
+		background rgba(255, 255, 255, 1)
+
+
+
+	&:hover &__box
+		top 5px
+		height 5px
+
+		& ^[0]__seeker
+			opacity 1
+
+
+
+	&__seeker
+		position absolute
+		top -5px
+		right -5px
+		width 14px
+		height 14px
+		background-color #ffffff
+		border-radius 50%
+		opacity 0
+		transition all .2s ease
+
+
+
+	&__timestamp
+		position absolute
+		left 0
+		bottom 54px
+		display none
+		padding 4px
+		color #ffffff
+		font-size 13px
+		font-weight 700
+		line-height 13px
+		background #303030
+		border-radius 2px
+
+		&:before
+			content ''
+			position absolute
+			left 50%
+			transform translateX(-50%)
+			bottom -6px
+			border-top 6px solid #303030
+			border-left 7px solid transparent
+			border-right 7px solid transparent
+
+
+
+	&:hover ^[0]__timestamp
+		+above(size-l)
+			display block

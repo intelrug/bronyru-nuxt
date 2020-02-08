@@ -1,0 +1,67 @@
+.mobile-nav
+	display block
+	font-size 18px
+
+
+
+	&__item
+		position relative
+		overflow hidden
+		max-height 45px
+		transition all .15s ease
+
+
+
+		&_opened
+			max-height 600px
+
+		&_opened >  ^[0]__dropdown-icon
+			transform rotate(0deg)
+
+
+
+	&__dropdown-icon
+		position absolute
+		top 10px
+		right 16px
+		width 24px
+		height 24px
+		padding 0 6px
+		font-size 12px
+		transition all .2s ease
+		fill #aeaeae
+		transform rotate(-90deg)
+
+
+
+	&__link
+		display block
+		padding 6px 0 6px 18px
+		color #FFFFFF
+		font-size 1em
+		text-decoration none
+		border-bottom 1px solid #383838
+
+		&[href='#']
+			cursor default
+			pointer-events none
+			opacity .2
+
+
+	&__sub-nav
+		background #343434
+
+
+
+		.mobile-nav__link
+			padding-left 30px
+
+
+
+	&__sub-nav &__sub-nav
+		background #282828
+
+
+
+		.mobile-nav__link
+			padding-left 40px
