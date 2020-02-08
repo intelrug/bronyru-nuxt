@@ -39,7 +39,6 @@
     "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-vue": "^6.1.2",
-    "fs-extra": "^8.1.0",
     "gh-pages": "^2.2.0",
     "stylint": "^2.0.0",
     "stylus": "^0.54.7",
