@@ -92,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'nuxt-property-decorator';
 import NavTiles from '~/components/navTiles/navTiles.vue';
 import { IEpisode } from '~/types/episode';
 import API from '~/lib/api';
@@ -108,6 +108,17 @@ import Player from '~/components/player/player.vue';
       return { episode: response };
     }
     redirect('/');
+    return {};
+  },
+  head(this: Episode) {
+    if (this.episode && this.episode.title) {
+      return {
+        title: this.episode.title.eng,
+        meta: [
+          { hid: 'description', name: 'description', content: this.episode.description.rus },
+        ],
+      };
+    }
     return {};
   },
 })
