@@ -40,9 +40,13 @@ export default {
   ],
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/svg-sprite',
   ],
   plugins: [
     '~/plugins/vue2-touch-events',
   ],
   axios: {},
+  svgSprite: {
+    input: '~/assets/icons/',
+  },
 };
