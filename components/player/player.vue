@@ -52,12 +52,7 @@
           v-show="canplay"
           class="player__play-button"
         >
-          <svg v-show="!playing">
-            <use xlink:href="/img/icon.svg#icon_play_arrow" />
-          </svg>
-          <svg v-show="playing">
-            <use xlink:href="/img/icon.svg#icon_pause" />
-          </svg>
+          <svg-icon :name="playing ? 'pause' : 'play_arrow'" />
         </div>
         <div
           v-show="startFrom > 0"
@@ -111,12 +106,7 @@
             class="player__icon"
             @click="play"
           >
-            <svg v-show="!playing">
-              <use xlink:href="/img/icon.svg#icon_play_arrow" />
-            </svg>
-            <svg v-show="playing">
-              <use xlink:href="/img/icon.svg#icon_pause" />
-            </svg>
+            <svg-icon :name="playing ? 'pause' : 'play_arrow'" />
           </div>
           <div
             v-show="!isMobile"
@@ -126,15 +116,18 @@
               class="player__icon"
               @click="mute"
             >
-              <svg v-show="muted || volume === 0">
-                <use xlink:href="/img/icon.svg#icon_volume_off" />
-              </svg>
-              <svg v-show="!muted && volume > 0 && volume < 50">
-                <use xlink:href="/img/icon.svg#icon_volume_down" />
-              </svg>
-              <svg v-show="!muted && volume >= 50">
-                <use xlink:href="/img/icon.svg#icon_volume_up" />
-              </svg>
+              <svg-icon
+                v-show="muted || volume === 0"
+                name="volume_off"
+              />
+              <svg-icon
+                v-show="!muted && volume > 0 && volume < 50"
+                name="volume_down"
+              />
+              <svg-icon
+                v-show="!muted && volume >= 50"
+                name="volume_up"
+              />
             </div>
             <div class="player__volume-seek-bar">
               <SeekBarVolume
@@ -153,9 +146,7 @@
             class="player__icon player__icon_size_s"
             @click="toggleSubs"
           >
-            <svg>
-              <use xlink:href="/img/icon.svg#icon_subtitles" />
-            </svg>
+            <svg-icon name="subtitles" />
           </div>
           <div
             v-show="!isMobile"
@@ -163,9 +154,7 @@
             class="player__icon player__icon_size_s"
             @click="toggleDubs"
           >
-            <svg>
-              <use xlink:href="/img/icon.svg#icon_language" />
-            </svg>
+            <svg-icon name="language" />
           </div>
           <div
             v-show="!isMobile"
@@ -173,20 +162,13 @@
             class="player__icon player__icon_size_s"
             @click="toggleVideos"
           >
-            <svg>
-              <use xlink:href="/img/icon.svg#icon_settings" />
-            </svg>
+            <svg-icon name="settings" />
           </div>
           <div
             class="player__icon"
             @click="setFullscreen"
           >
-            <svg v-show="!fullscreen">
-              <use xlink:href="/img/icon.svg#icon_fullscreen" />
-            </svg>
-            <svg v-show="fullscreen">
-              <use xlink:href="/img/icon.svg#icon_fullscreen_exit" />
-            </svg>
+            <svg-icon :name="fullscreen ? 'fullscreen_exit' : 'fullscreen'" />
           </div>
         </div>
         <div
@@ -204,9 +186,7 @@
               v-show="selectedSubCode === sub.code"
               class="player__popup-icon"
             >
-              <svg>
-                <use xlink:href="/img/icon.svg#icon_check" />
-              </svg>
+              <svg-icon name="check" />
             </div>
             {{ sub.name }}
           </div>
@@ -226,9 +206,7 @@
               v-show="selectedDubCode === dub.code"
               class="player__popup-icon"
             >
-              <svg>
-                <use xlink:href="/img/icon.svg#icon_check" />
-              </svg>
+              <svg-icon name="check" />
             </div>
             {{ dub.name }}
           </div>
@@ -248,9 +226,7 @@
               v-show="selectedVideo === video"
               class="player__popup-icon"
             >
-              <svg>
-                <use xlink:href="/img/icon.svg#icon_check" />
-              </svg>
+              <svg-icon name="check" />
             </div>
             {{ video }}p
           </div>
@@ -309,7 +285,7 @@ export default class Player extends Vue {
     } else {
       this.video.pause();
       this.audio.pause();
-      clearTimeout(this.closeControlsTimeoutId);
+      window.clearTimeout(this.closeControlsTimeoutId);
       this.showControls = true;
     }
   }
@@ -411,6 +387,7 @@ export default class Player extends Vue {
   private clicksCount: number = 0;
   private clicksLocation: number = 0;
   private clicksTimeoutId!: number;
+  private skipSeconds: number = 0;
   private windowWidth: number = 0;
   private startFrom: number = 0;
   private currentTime: number = 0;
@@ -717,7 +694,7 @@ export default class Player extends Vue {
               || this.controlsBottom.contains(event.target))
         ) {
           this.clicksCount += 1;
-          clearTimeout(this.clicksTimeoutId);
+          window.clearTimeout(this.clicksTimeoutId);
           this.clicksLocation = this.getClickLocation(event);
           this.play();
           this.disableControls();
@@ -727,20 +704,26 @@ export default class Player extends Vue {
       this.enableControls();
     } else {
       this.clicksCount += 1;
-      clearTimeout(this.clicksTimeoutId);
+      window.clearTimeout(this.clicksTimeoutId);
       this.clicksLocation = this.getClickLocation(event);
       this.play();
     }
 
     if (this.clicksCount > 0) {
-      if (this.clicksCount === 2) {
+      if (this.clicksLocation === 0 && this.clicksCount === 2) {
         this.clicksTimeoutId = window.setTimeout(() => {
           this.setFullscreen();
           this.clicksCount = 0;
         }, 200);
+      } else if ((this.clicksLocation === 1 || this.clicksLocation === -1) && this.clicksCount > 1) {
+        this.skipSeconds += 10 * this.clicksLocation;
       } else {
         this.clicksTimeoutId = window.setTimeout(() => {
           this.clicksCount = 0;
+          if (this.skipSeconds !== 0) {
+            this.skip(this.skipSeconds);
+            this.skipSeconds = 0;
+          }
         }, 200);
       }
     }
@@ -756,7 +739,7 @@ export default class Player extends Vue {
   }
 
   disableControls() {
-    clearTimeout(this.closeControlsTimeoutId);
+    window.clearTimeout(this.closeControlsTimeoutId);
     this.closeControlsTimeoutId = window.setTimeout(() => {
       if (this.playing) {
         this.showControls = false;
